@@ -135,7 +135,37 @@ def lab1():
         сознательно предоставляющих лишь самые базовые возможности.</p>
 
         <a href="/">Назад на главную</a></li>
+    <div class="container" style='display: flex; justify-content: space-between;'>
+            <div class="rout_list" style='width: 30%; margin-left: 5px'>
+                <h2>Список rout'ов:</h2>
+                <ol>
+                    <li><a href="/index">/index</a></li>
+                    <li><a href="/lab1/web">/lab1/web</a></li>
+                    <li><a href="/lab1/info">/lab1/info</a></li>
+                    <li><a href="/lab1/oak">/lab1/oak</a></li>
+                    <li><a href="/lab1/counter">/lab1/counter</a></li>
+                    <li><a href="/lab1/new_route">/lab1/new_route</a></li>
+                    <li><a href="/lab1/resource">/lab1/resource (дополнительное задание)</a></li>
+                </ol>
+            </div>
+
+            <div class="error_list" style='width: 68%;'>
+                <h2>Список ошибок:</h2>
+                <ol>
+                    <li><a href="/lab1/trigger_400">400</a></li>
+                    <li><a href="/lab1/trigger_401">401</a></li>
+                    <li><a href="/lab1/trigger_403">403</a></li>
+                    <li><a href="/lab1/trigger_404">404</a></li>
+                    <li><a href="/lab1/trigger_405">405</a></li>
+                    <li><a href="/lab1/trigger_418">418</a></li>
+                    <li><a href="/lab1/trigger_500">500</a></li>
+                </ol>
+            </div>
+        </div>
     </body>
+    <footer>
+        Бабий Арина Александровна, ФБИ-21, 3 Курс, 2024 год.
+    </footer>
 </html>
 '''
  
@@ -207,7 +237,7 @@ def counter_cleaner():
 
 @app.route("/lab1/info")
 def info():
-    return redirect("/author")
+    return redirect("/lab1/author")
 
 @app.route("/lab1/created")
 def created():
@@ -233,7 +263,7 @@ def new_route():
     <body>
         <p>Sergey Mihalcov</p>
         <div class="text_container" style='width: 50%'>
-            <p style='margin-top: 10px'> <b>The three little pigs</b>The three little pigs are brothers. They are going into the forest. They want to build three houses. 
+            <p style='margin-top: 10px'> The three little pigs are brothers. They are going into the forest. They want to build three houses. 
             "Let’s build our houses here," says the first little pig, Percy. "Yes," says the second little pig, Peter. 
             "That’s a good idea," says the third little pig, Patrick. The first little pig, Percy, gets some straw and he starts to build a house of straw. 
             He sings, "Hum de hum, dum de dum, hee de dum, dee de hum," when he works.</p>
