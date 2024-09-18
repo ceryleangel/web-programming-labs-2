@@ -220,3 +220,48 @@ def created():
     </div>
 </html>    
 ''', 201
+
+@app.route('/lab1/new_route')
+def new_route():
+    return '''
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="''' + url_for('static', filename='lab1.css') + '''">
+        <tytle>The three little pigs</tytle>
+    </head>
+    <body>
+        <p>Sergey Mihalcov</p>
+        <div class="text_container" style='width: 50%'>
+            <p style='margin-top: 10px'> <b>The three little pigs</b>The three little pigs are brothers. They are going into the forest. They want to build three houses. 
+            "Let’s build our houses here," says the first little pig, Percy. "Yes," says the second little pig, Peter. 
+            "That’s a good idea," says the third little pig, Patrick. The first little pig, Percy, gets some straw and he starts to build a house of straw. 
+            He sings, "Hum de hum, dum de dum, hee de dum, dee de hum," when he works.</p>
+
+            <p>The second little pig, Peter, gets some wood and he starts to build a house of wood. He sings, 
+            "Hum de hum, dum de dum, hee de dum, dee de hum," when he works. The third pig, Patrick, is very clever. 
+            He gets some bricks and he starts to build a house of bricks. He sings, "Hum de hum, dum de dum, hee de dum, dee de hum," 
+            when he works. Now all the houses are ready. The three little pigs make a fence and they paint it red.</p>
+
+            <p> But a big bad wolf lives in the forest. Every day the wolf watches the pigs. He is hungry and he wants to eat them. 
+            He looks at the house of straw and he says, "I can smell a little pig. I want to eat him for my dinner,". The big bad wolf 
+            jumps over the red fence. He goes to the house of straw and he knocks on the door. "Can I come in, little pig? I’m not very big!" 
+            he says. But Percy sees it is a big bad wolf. He says, "Go away! You can’t come in. You’re a big bad wolf, you horrible thing."</p>
+
+        </div>
+
+        <div class="image_container" style='position: absolute; right: 50px; top: 10%'>
+            <img src="''' + url_for('static', filename='nif.jpg') + '''" style='margin-top: 10px'>
+        </div>
+
+        <div>
+        <a href="/lab1">Назад на страницу лабораторной</a>
+        </div>
+    </body>
+    <footer>Бабий Арина Александровна, ФБИ-21, 3 Курс, 2024 год.</footer>
+</html>
+''', 200, {
+    'Content-Language': 'en',
+    'X-Nerd': '42',
+    'X-Student': 'Babii Arina'
+}
