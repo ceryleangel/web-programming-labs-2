@@ -18,7 +18,7 @@ def web():
             'Content-Type': 'text/plain; charset=utf-8'
         }
 
-@app.route("/author")
+@app.route("/lab1/author")
 def author():
     name = "Бабий Арина Александровна"
     group = "ФБИ-21"
@@ -71,7 +71,7 @@ def counter_cleaner():
     count = 0
     return redirect('/lab1/counter')
 
-@app.route("/info")
+@app.route("/lab1/info")
 def info():
     return redirect("/author")
 
