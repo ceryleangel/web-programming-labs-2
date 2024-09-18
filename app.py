@@ -21,19 +21,6 @@ def unauthorized(err):
 def trigger_401():
     abort(401)
 
-class PaymentRequired(HTTPException):
-    code = 402
-    description = 'Payment Required'
-
-@app.errorhandler(PaymentRequired)
-def payment_required(err):
-    return '''Ошибка 402. Зарезервировано для будущего использования.
-    Используется для целей тестирования оплаты.''', 402
-
-@app.route('/lab1/trigger_402')
-def trigger_402():
-    abort(402)
-
 @app.errorhandler(403)
 def forbidden(err):
     return '''Ошибка 403. Клиент не имеет прав доступа к содержимому,
@@ -58,16 +45,12 @@ def not_found(err):
         что URL-адрес не распознан. В API это также может означать,
         что адрес правильный, но ресурс не существует.</p>
 
-        <img src="''' + url_for('static', filename='Error_404_img.png') + '''" style="width: 300px;
+        <img src="''' + url_for('static', filename='eror404.webp') + '''" style="width: 300px;
         position: absolute; top: 60%; right: 50px; transform: translateY(-50%);"></br>
 
         <a href="/">Вернуться на главную</a>
     </body>
 ''', 404
-
-@app.route('/lab1/trigger_404')
-def trigger_404():
-    abort(404)
 
 @app.errorhandler(405)
 def method_not_allowed(err):
