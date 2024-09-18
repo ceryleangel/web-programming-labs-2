@@ -69,6 +69,33 @@ def i_am_a_teapot(err):
 def trigger_418():
     abort(418)
 
+@app.errorhandler(500)
+def internal_server_error(err):
+    return '''
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="''' + url_for('static', filename='lab1.css') + '''">
+        <tytle>Ошибка 500</tytle>
+    </head>
+    <body>
+        <h1>Внутренняя ошибка сервера</h1>
+        <p>На сервере произошла ошибка, в результате которой он не может успешно обработать запрос.
+        Пожалуйста, попробуйте позже.</p>
+
+        <a href="/">Вернуться на главную</a>
+    </body>
+</html>
+''', 500
+
+@app.route('/lab1/trigger_500')
+def trigger_500():
+    abort(500)
+
+@app.route('/lab1/an_error')
+def make_an_error():
+    return 1 / 0
+
 @app.route('/')
 @app.route('/index')
 def index():
