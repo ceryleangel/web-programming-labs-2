@@ -5,7 +5,7 @@ app=Flask(__name__)
 def not_found(err):
     return "нет такой страницы", 404
  
-@app.route("/web") 
+@app.route("/lab1/web") 
 def web(): 
     return """<!doctype html>
         <html>
@@ -37,9 +37,13 @@ def author():
 @app.route('/lab1/oak')
 def oak():
     path = url_for("static", filename="oak.jpg")
+    style = url_for('static', filename='lab1.css')
     return '''
 <!doctype html>
 <html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="''' + style + '''">
+    </head>
     <body>
         <h1>Дуб</h1>
         <img src="''' + path + '''">
