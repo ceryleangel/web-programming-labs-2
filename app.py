@@ -65,6 +65,12 @@ def counter():
 </html>
 '''
 
+@app.route('/lab1/counter_cleaner')
+def counter_cleaner():
+    global count
+    count = 0
+    return redirect('/lab1/counter')
+
 @app.route("/info")
 def info():
     return redirect("/author")
