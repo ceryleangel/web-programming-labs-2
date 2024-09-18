@@ -13,19 +13,19 @@ img {
 }
 
 a {
-    color: rgb(88, 98, 84);
+    color: rgb(4, 212, 174);
     text-decoration: underline;
     margin: 5px;
 }
 
 a:hover {
-    color: rgb(88, 98, 84);
+    color: rgb(0, 0, 0);
     font-weight: bold;
 }
 
 tytle {
     background-color: rgb(251, 249, 246);
-    color: rgb(72, 80, 69);
+    color: rgb(0, 0, 0);
     font-family: Helvetica;
     font-size: 30px;
     font-weight: bold;
@@ -35,7 +35,7 @@ tytle {
 
 header {
     background-color: transparent;
-    color: rgb(88, 98, 84);
+    color: rgb(0, 0, 0);
     font-family: Helvetica;
     font-size: 25px;
     font-weight: bold;
@@ -46,7 +46,7 @@ header {
 
 footer {
     background-color: rgb(251, 249, 246);
-    color: rgb(88, 98, 84);
+    color: rgb(0, 0, 0);
     font-family: Helvetica;
     font-style: italic;
     text-align: right;
@@ -60,7 +60,7 @@ footer {
 }
 
 ol {
-    color: rgb(88, 98, 84);
+    color: rgb(65, 213, 186);
     font-size: 20px;
     font-weight: bold;
     line-height: 1.5;
@@ -69,7 +69,7 @@ ol {
 }
 
 li {
-    color: rgb(88, 98, 84);
+    color: rgb(60, 236, 209);
     font-size: 20px;
     font-weight: bold;
     line-height: 1.5;
