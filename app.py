@@ -1,34 +1,95 @@
 from flask import Flask, url_for, redirect
 app=Flask(__name__) 
 
-@app.errorhandler(400)
-def bad_request(err):
-    return '''Ошибка 400.
-    Неверный запрос. Сервер не может обработать запрос из-за чего-то,
-    что воспринимается как ошибка клиента (например, неправильный синтаксис, формат
-    или маршрутизация запроса).''', 400
+@app.route('/lab1/error/400')
+def error_400():
+    return '''
+<!doctype html>
+<html>
+    <head>
+        <title>Код 400</title>
+    </head>
+    <body>
+        <h1>400 Bad Request</h1>
+        <p>Сервер не может или не будет обрабатывать запрос из-за очевидной ошибки клиента.</p>
+    </body>
+</html>
+''', 400
 
-@app.route('/lab1/trigger_400')
-def trigger_400():
-    abort(400)
+@app.route('/lab1/error/401')
+def error_401():
+    return '''
+<!doctype html>
+<html>
+    <head>
+        <title>Код 401</title>
+    </head>
+    <body>
+        <h1>401 Unauthorized</h1>
+        <p>Запрос не был применен, так как отсутствуют действительные учетные данные для целевого ресурса.</p>
+    </body>
+</html>
+''', 401
 
-@app.errorhandler(401)
-def unauthorized(err):
-    return '''Ошибка 401. Для доступа к ресурсу требуется аутентификация.
-    Клиент должен передать заголовок Authorization в запросе.''', 401
+@app.route('/lab1/error/402')
+def error_402():
+    return '''
+<!doctype html>
+<html>
+    <head>
+        <title>Код 402</title>
+    </head>
+    <body>
+        <h1>402 Payment Required</h1>
+        <p>Этот код зарезервирован для будущего использования.</p>
+    </body>
+</html>
+''', 402
 
-@app.route('/lab1/trigger_401')
-def trigger_401():
-    abort(401)
+@app.route('/lab1/error/403')
+def error_403():
+    return '''
+<!doctype html>
+<html>
+    <head>
+        <title>Код 403</title>
+    </head>
+    <body>
+        <h1>403 Forbidden</h1>
+        <p>У клиента нет прав доступа к содержимому, поэтому сервер отказывается дать надлежащий ответ.</p>
+    </body>
+</html>
+''', 403
 
-@app.errorhandler(403)
-def forbidden(err):
-    return '''Ошибка 403. Клиент не имеет прав доступа к содержимому,
-    поэтому сервер отказывает в выполнении запроса.''', 403
+@app.route('/lab1/error/405')
+def error_405():
+    return '''
+<!doctype html>
+<html>
+    <head>
+        <title>Код 405</title>
+    </head>
+    <body>
+        <h1>405 Method Not Allowed</h1>
+        <p>Метод, указанный в запросе, не разрешен для указанного ресурса.</p>
+    </body>
+</html>
+''', 405
 
-@app.route('/lab1/trigger_403')
-def trigger_403():
-    abort(403)
+@app.route('/lab1/error/418')
+def error_418():
+    return '''
+<!doctype html>
+<html>
+    <head>
+        <title>Код 418</title>
+    </head>
+    <body>
+        <h1>418 I'm a teapot</h1>
+        <p>Сервер отказывается варить кофе, потому что является чайником.</p>
+    </body>
+</html>
+''', 418
 
 @app.errorhandler(404)
 def not_found(err):
@@ -52,22 +113,7 @@ def not_found(err):
     </body>
 ''', 404
 
-@app.errorhandler(405)
-def method_not_allowed(err):
-    return '''Ошибка 405. Метод, указанный в запросе (например, POST, PUT, DELETE) не применим к ресурсу,
-    и сервер не поддерживает его.''', 405
 
-@app.route('/lab1/trigger_405')
-def trigger_405():
-    abort(405)
-
-@app.errorhandler(418)
-def i_am_a_teapot(err):
-    return '''Ошибка 418. Я… я – чайник? ''', 418
-
-@app.route('/lab1/trigger_418')
-def trigger_418():
-    abort(418)
 
 @app.errorhandler(500)
 def internal_server_error(err):
@@ -152,12 +198,13 @@ def lab1():
             <div class="error_list" style='width: 68%;'>
                 <h2>Список ошибок:</h2>
                 <ol>
-                    <li><a href="/lab1/trigger_400">400</a></li>
-                    <li><a href="/lab1/trigger_401">401</a></li>
-                    <li><a href="/lab1/trigger_403">403</a></li>
-                    <li><a href="/lab1/trigger_404">404</a></li>
-                    <li><a href="/lab1/trigger_405">405</a></li>
-                    <li><a href="/lab1/trigger_418">418</a></li>
+                    <li><a href="/lab1/error/400">400</a></li>
+                    <li><a href="/lab1/error/401">401</a></li>
+                    <li><a href="/lab1/error/402">402</a></li>
+                    <li><a href="/lab1/error/403">403</a></li>
+                    <li><a href="/lab1/error/404">404</a></li>
+                    <li><a href="/lab1/error/405">405</a></li>
+                    <li><a href="/lab1/error/418">418</a></li>
                     <li><a href="/lab1/trigger_500">500</a></li>
                 </ol>
             </div>
@@ -250,6 +297,7 @@ def created():
     </div>
 </html>    
 ''', 201
+
 
 @app.route('/lab1/new_route')
 def new_route():
