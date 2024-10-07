@@ -343,3 +343,12 @@ def new_route():
     'X-Nerd': '42',
     'X-Student': 'Babii Arina'
 }
+
+#ЛР2
+@app.route('/lab2/a')
+def a():
+    return 'без слэша'
+
+@app.route('/lab2/a/')
+def a2():
+    return 'со слэшем'
