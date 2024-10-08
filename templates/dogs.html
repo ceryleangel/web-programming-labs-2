@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{# Номер лабораторной работы: #}
+{% block lab %}Лабораторная работа 2{% endblock %}
+
+{# Основной контент: #}
+{% block main %}
+    <h1>Обзор собаки</h1>
+    <ul>
+        {% for dog in dogs %}
+        <h3>{{ dog.name }}</h3>
+        <p>{{ dog.description}}</p>
+        <img src="{{ url_for('static', filename='dog_img/' + dog.image) }}" />
+        {% endfor %}
+    </ul>
+{% endblock %}

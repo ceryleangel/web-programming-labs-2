@@ -54,3 +54,8 @@ div {
     color:red;
     font-weight: bold;
 }
+
+img {
+    width: 250px;
+    height: 320px;
+}
