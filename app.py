@@ -360,10 +360,10 @@ def a2():
 
 
 flower_list =  [
-    {'name': 'Роза'},
-    {'name': 'Тюльпан'},
-    {'name': 'Незабудка'},
-    {'name': 'Ромашка'}
+    {'name': 'Роза', 'price': 150},
+    {'name': 'Тюльпан', 'price': 80},
+    {'name': 'Незабудка', 'price': 50},
+    {'name': 'Ромашка', 'price': 30}
 ]
 
 #Меню всех цветов
@@ -395,6 +395,45 @@ def add_flowers():
     </body>
 </html>
 ''', 400
+
+#Цветок по ID
+@app.route('/lab2/flowers/<int:flower_id>')
+def flowers(flower_id):
+    style = url_for("static", filename="main.css")
+    if flower_id >= len(flower_list):
+        return '''
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="''' + style + '''">
+    </head>
+    <body>
+        <h1>Такого цветка нет!</h1>
+        <a href="/lab2/all_flowers/">Вернуться к списку цветов</a>
+    </body>
+</html>
+''', 404
+    else:
+        flower = flower_list[flower_id]
+    return render_template('flower_id.html', flower=flower, flower_id=flower_id)
+
+
+#Не задан ID цветка
+@app.route('/lab2/flowers/')
+def err_flowers():
+    style = url_for("static", filename="main.css")
+    return '''
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="''' + style + '''">
+    </head>
+    <body>
+        <h1>Вы не задали ID цветка!</h1>
+        <a href="/lab2/all_flowers/">Вернуться к списку цветов</a>
+    </body>
+</html>
+''', 400
     
 #Очистить весь список цветов
 @app.route('/lab2/delete_flowers/')
@@ -402,6 +441,26 @@ def delete_flowers():
     flower_list.clear()  
     return redirect('/lab2/all_flowers/')
 
+#Удалить цветок по ID
+@app.route('/lab2/delete_flower/<int:flower_id>')
+def delete_flower(flower_id):
+    style = url_for("static", filename="main.css")
+    if flower_id >= len(flower_list):
+        return '''
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="''' + style + '''">
+    </head>
+    <body>
+        <h1>Цветов больше нет!</h1>
+        <a href="/lab2/all_flowers/">Вернуться к списку цветов</a>
+    </body>
+</html>
+''', 404
+    else:
+        del flower_list[flower_id]
+        return redirect('/lab2/all_flowers/')
 
 @app.route('/lab2/exemple')
 def example():
