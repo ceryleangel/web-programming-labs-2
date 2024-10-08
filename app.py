@@ -150,12 +150,13 @@ def index():
 <html>
     <head>
         <tytle>НГТУ, ФБ, Лабораторные работы</tytle>
-        <link rel="stylesheet" type="text/css" href="''' + url_for('static', filename='lab1.css') + '''">
+        <link rel="stylesheet" type="text/css" href="''' + url_for('static', filename='main.css') + '''">
     </head>
     <body>
         <header>НГТУ, ФБ, WEB-программирование, часть 2. Список лабораторных</header>
         <ol>
             <li><a href="/lab1">Первая Лабораторная</a></li>
+            <li><a href="/lab2">Вторая Лабораторная</a></li>
         </ol>
     </body>
     <footer>
@@ -553,7 +554,6 @@ dogs = [
         "image": "dog5.jpg"
     }
 ]
-
 
 @app.route('/lab2/dogs/')
 def dog():
