@@ -382,5 +382,12 @@ def example():
     kurs = '3'
     name ='Арина Бабий'
     num_gr='21'
-    return render_template('exemple.html', name=name, number=number, kurs=kurs, num_gr=num_gr)
+    fruits = [
+        {'name': 'яблоки', 'price': 100},
+        {'name': 'апельсины', 'price': 120},
+        {'name': 'мандарины', 'price': 95},
+        {'name': 'манго', 'price': 300},
+        {'name': 'бананы', 'price': 150},
+        ]
+    return render_template('exemple.html', name=name, number=number, kurs=kurs, num_gr=num_gr, fruits=fruits)
 
