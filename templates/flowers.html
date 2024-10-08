@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{# Номер лабораторной работы: #}
+{% block lab %}Лабораторная работа 2{% endblock %}
+
+{# Основной контент: #}
+{% block main %}
+    <h1>Список всех цветов:</h1>
+    <p>Всего цветов: {{flowers_num}} </p>
+    <p>
+        Полный список:
+        <ul>
+            {% for f in flower_list %}
+                <li>{{ f.name }}: {{ f.price }} 
+                <a href="/lab2/delete_flower/{{ loop.index0 }}">Удалить</a></li>
+            {% endfor %}
+        </ul>
+    </p>
+
+    <p>Добавить новый цветок:</p>
+    <form action="{{ '/lab2/add_flower/' }}">        
+        <input type="text" name="name" placeholder="Название"><br>   
+        <input type="number" name="price" placeholder="Цена"><br>
+        <button type="submit">Добавить</button>
+    </form><br>
+    <a href="/lab2/flowers/">Найти цветок по ID</a><br>
+    <a href="/lab2/delete_flowers/">Очистить список цветов</a>
+
+{% endblock %}
