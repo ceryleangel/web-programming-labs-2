@@ -508,3 +508,21 @@ def red_calc():
 @app.route('/lab2/calc/<int:a>')
 def redi_calc(a):
     return redirect(f'/lab2/calc/{a}/1')
+
+books = [
+    {"author": "Рэй Брэдбери", "title": "451 градус по Фаренгейту", "genre": "Роман", "pages": 382},
+    {"author": "Фёдор Достоевский", "title": "Преступление и наказание", "genre": "Роман", "pages": 680},
+    {"author": "Джейн Остин", "title": "Гордость и предубеждение", "genre": "Роман", "pages": 384},
+    {"author": "Михаил Булгаков", "title": "Мастер и Маргарита", "genre": "Роман", "pages": 528},
+    {"author": "Джордж Оруэлл", "title": "1984", "genre": "Aнтиутопия", "pages": 320},
+    {"author": "Марк Твен", "title": "Приключения Тома Сойера", "genre": "Повесть", "pages": 336},
+    {"author": "Дж. Д. Сэлинджер", "title": "Над пропастью во ржи", "genre": "Роман", "pages": 224},
+    {"author": "Лев Толстой", "title": "Война и мир", "genre": "Роман", "pages": 1225},
+    {"author": "Иван Тургенев", "title": "Отцы и дети", "genre": "Роман", "pages": 416},
+    {"author": "Михаил Хазин", "title": "Лестница в небо", "genre": "Научно-популярный", "pages": 624}
+]
+
+
+@app.route('/lab2/books/')
+def book():
+    return render_template('book.html', books=books)
