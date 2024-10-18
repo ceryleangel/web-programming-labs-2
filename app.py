@@ -14,7 +14,7 @@ def not_found(err):
 <!doctype html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="''' + url_for('static', filename='lab1.css') + '''">
+        <link rel="stylesheet" type="text/css" href="''' + url_for('static', filename='lab1/lab1.css') + '''">
         <tytle>Ошибка 404</tytle>
     </head>
     <body>
@@ -23,7 +23,7 @@ def not_found(err):
         что URL-адрес не распознан. В API это также может означать,
         что адрес правильный, но ресурс не существует.</p>
 
-        <img src="''' + url_for('static', filename='eror404.webp') + '''" style="width: 300px;
+        <img src="''' + url_for('static', filename='lab1/eror404.webp') + '''" style="width: 300px;
         position: absolute; top: 60%; right: 50px; transform: translateY(-50%);"></br>
 
         <a href="/">Вернуться на главную</a>
@@ -36,7 +36,7 @@ def internal_server_error(err):
 <!doctype html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="''' + url_for('static', filename='lab1.css') + '''">
+        <link rel="stylesheet" type="text/css" href="''' + url_for('static', filename='lab1/lab1.css') + '''">
         <tytle>Ошибка 500</tytle>
     </head>
     <body>

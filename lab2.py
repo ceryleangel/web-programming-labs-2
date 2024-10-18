@@ -23,7 +23,7 @@ flower_list =  [
 def all_flowers():
     flowers = flower_list
     flowers_num = len(flower_list)
-    return render_template('flowers.html', flower_list=flowers, flowers_num=flowers_num)
+    return render_template('lab2/flowers.html', flower_list=flowers, flowers_num=flowers_num)
   
 @lab2.route('/lab2/add_flower/')
 def add_flowers():
@@ -33,7 +33,7 @@ def add_flowers():
     if name and price:
         flower_list.lab2end({'name': name, 'price': int(price)})
         flower_id = len(flower_list) - 1
-        return render_template('add_flower.html', flower_id=flower_id, name=name, price=price)
+        return render_template('lab2/add_flower.html', flower_id=flower_id, name=name, price=price)
     else:    
         return '''
 <!doctype html>
@@ -51,7 +51,7 @@ def add_flowers():
 #Цветок по ID
 @lab2.route('/lab2/flowers/<int:flower_id>')
 def flowers(flower_id):
-    style = url_for("static", filename="main.css")
+    style = url_for("static", filename="lab2/main.css")
     if flower_id >= len(flower_list):
         return '''
 <!doctype html>
@@ -67,13 +67,13 @@ def flowers(flower_id):
 ''', 404
     else:
         flower = flower_list[flower_id]
-    return render_template('flower_id.html', flower=flower, flower_id=flower_id)
+    return render_template('lab2/flower_id.html', flower=flower, flower_id=flower_id)
 
 
 #Не задан ID цветка
 @lab2.route('/lab2/flowers/')
 def err_flowers():
-    style = url_for("static", filename="main.css")
+    style = url_for("static", filename="lab2/main.css")
     return '''
 <!doctype html>
 <html>
@@ -96,7 +96,7 @@ def delete_flowers():
 #Удалить цветок по ID
 @lab2.route('/lab2/delete_flower/<int:flower_id>')
 def delete_flower(flower_id):
-    style = url_for("static", filename="main.css")
+    style = url_for("static", filename="lab2/main.css")
     if flower_id >= len(flower_list):
         return '''
 <!doctype html>
@@ -128,16 +128,16 @@ def example():
         {'name': 'манго', 'price': 300},
         {'name': 'бананы', 'price': 150},
         ]
-    return render_template('exemple.html', name=name, number=number, kurs=kurs, num_gr=num_gr, fruits=fruits)
+    return render_template('lab2/exemple.html', name=name, number=number, kurs=kurs, num_gr=num_gr, fruits=fruits)
 
 @lab2.route('/lab2/')
 def lab():
-    return render_template('lab2.html')
+    return render_template('lab2/lab2.html')
 
 @lab2.route('/lab2/filters')
 def filters():
     phrase = 'О <b> сколько</b> <u>нам</u> <i>открытий</i> чудных...'
-    return render_template('filter.html', phrase=phrase)
+    return render_template('lab2/filter.html', phrase=phrase)
 
 @lab2.route('/lab2/calc/<int:a>/<int:b>')
 def calc(a, b):
@@ -148,7 +148,7 @@ def calc(a, b):
     multiplication = a * b
     division = a / b if b != 0 else "Деление на ноль"
     power = a ** b
-    return render_template('calc.html', a=num_a, b=num_b, addition=addition, subtraction=subtraction,
+    return render_template('lab2/calc.html', a=num_a, b=num_b, addition=addition, subtraction=subtraction,
                            multiplication=multiplication, division=division, power=power)
 
 
@@ -176,7 +176,7 @@ books = [
 
 @lab2.route('/lab2/books/')
 def book():
-    return render_template('book.html', books=books)
+    return render_template('lab2/book.html', books=books)
 
 dogs = [
     {
@@ -208,5 +208,5 @@ dogs = [
 
 @lab2.route('/lab2/dogs/')
 def dog():
-    return render_template('dogs.html', dogs=dogs)
+    return render_template('lab2/dogs.html', dogs=dogs)
 

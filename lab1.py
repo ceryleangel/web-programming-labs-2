@@ -1,4 +1,4 @@
-from flask import Blueprint, Flask, url_for, redirect
+from flask import Blueprint, Flask, url_for, redirect, render_template
 lab1=Blueprint('lab1', __name__) 
 
 
@@ -98,49 +98,6 @@ def error_418():
 ''', 418
 
 
-@lab1.errorhandler(404)
-def not_found(err):
-    return '''
-<!doctype html>
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="''' + url_for('static', filename='lab1.css') + '''">
-        <tytle>Ошибка 404</tytle>
-    </head>
-    <body>
-        <h1>Упс… Кажется такой страницы не существует</h1>
-        <p>Сервер не может найти запрошенный ресурс. В браузере это означает,
-        что URL-адрес не распознан. В API это также может означать,
-        что адрес правильный, но ресурс не существует.</p>
-
-        <img src="''' + url_for('static', filename='eror404.webp') + '''" style="width: 300px;
-        position: absolute; top: 60%; right: 50px; transform: translateY(-50%);"></br>
-
-        <a href="/">Вернуться на главную</a>
-    </body>
-''', 404
-
-
-@lab1.errorhandler(500)
-def internal_server_error(err):
-    return '''
-<!doctype html>
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="''' + url_for('static', filename='lab1.css') + '''">
-        <tytle>Ошибка 500</tytle>
-    </head>
-    <body>
-        <h1>Внутренняя ошибка сервера</h1>
-        <p>На сервере произошла ошибка, в результате которой он не может успешно обработать запрос.
-        Пожалуйста, попробуйте позже.</p>
-
-        <a href="/">Вернуться на главную</a>
-    </body>
-</html>
-''', 500
-
-
 @lab1.route('/lab1/trigger_500')
 def trigger_500():
     abort(500)
@@ -158,7 +115,7 @@ def lab():
 <html>
     <head>
         <tytle>Лабораторная 1</tytle>
-        <link rel="stylesheet" type="text/css" href="''' + url_for('static', filename='lab1.css') + '''">
+        <link rel="stylesheet" type="text/css" href="''' + url_for('static', filename='lab1/lab1.css') + '''">
     </head>
     <body>
         <h1>Flask</h1>
@@ -236,8 +193,8 @@ def author():
 
 @lab1.route('/lab1/oak')
 def oak():
-    path = url_for("static", filename="oak.jpg")
-    style = url_for('static', filename='lab1.css')
+    path = url_for("static", filename="lab1/oak.jpg")
+    style = url_for('static', filename='lab1/lab1.css')
     return '''
 <!doctype html>
 <html>
@@ -298,7 +255,7 @@ def new_route():
 <!doctype html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="''' + url_for('static', filename='lab1.css') + '''">
+        <link rel="stylesheet" type="text/css" href="''' + url_for('static', filename='lab1/lab1.css') + '''">
         <tytle>The three little pigs</tytle>
     </head>
     <body>
@@ -322,7 +279,7 @@ def new_route():
         </div>
 
         <div class="image_container" style='position: absolute; right: 50px; top: 10%'>
-            <img src="''' + url_for('static', filename='nif.jpg') + '''" style='margin-top: 10px'>
+            <img src="''' + url_for('static', filename='lab1/nif.jpg') + '''" style='margin-top: 10px'>
         </div>
 
         <div>
