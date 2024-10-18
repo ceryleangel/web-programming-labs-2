@@ -6,6 +6,25 @@
     <title>Арина Бабий. {% block lab %}{% endblock %}</title>
     <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+    <style>
+        body {
+            {% if request.cookies.get('color') %}
+            color : {{ request.cookies.get('color') }};
+            {% endif %}
+
+            {% if request.cookies.get('background-color') %}
+            background-color: {{ request.cookies.get('background-color') }};
+            {% endif %}
+
+            {% if request.cookies.get('fontsize') %}
+            font-size: {{ request.cookies.get('fontsize') }}px;
+            {% endif %}
+
+            {% if request.cookies.get('fontweight') %}
+            font-weight: {{ request.cookies.get('fontweight') }};
+            {% endif %}
+        }
+    </style>
 </head>
 <body>
     <header>
