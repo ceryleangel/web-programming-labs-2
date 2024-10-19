@@ -166,3 +166,13 @@ def jd():
                            bedding=bedding, luggage=luggage, age=age, departure=departure,
                            destination=destination, date=date, insurance=insurance,
                            ticket_type=ticket_type, price=price)
+
+
+@lab3.route('/lab3/del_cookie_2')
+def del_cookie_2():
+    resp = make_response(redirect('/lab3/settings'))
+    resp.delete_cookie('color')
+    resp.delete_cookie('background-color')
+    resp.delete_cookie('fontsize')
+    resp.delete_cookie('fontweight')
+    return resp
