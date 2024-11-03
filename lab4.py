@@ -126,8 +126,10 @@ def tree():
 
 
 users = [
-    {'login': 'alex', 'password': '123'},
-    {'login': 'bob', 'password': '555'},
+    {'login': 'alex', 'password': '123', 'name': 'Alex John', 'gender': 'male'},
+    {'login': 'bob', 'password': '555', 'name': 'Bob Kim', 'gender': 'male'},
+    {'login': 'arina', 'password': '257', 'name': 'Arina Babii', 'gender': 'female'},
+    {'login': 'robin', 'password': '000', 'name': 'Robert Smith', 'gender': 'male'},
 ]
 
 
@@ -137,21 +139,32 @@ def login():
         if 'login' in session:
             authorized = True
             login = session['login']
+            name = next(user['name'] for user in users if user['login'] == login)
         else:
             authorized = False
             login = ''
-        return render_template('lab4/login.html', authorized=authorized, login=login)
+            name = ''
+        return render_template('lab4/login.html', authorized=authorized, login=login, name=name)
     
     login = request.form.get('login')
     password = request.form.get('password')
 
+    # Проверка на пустые поля
+    if not login:
+        error = 'Не введён логин'
+        return render_template('lab4/login.html', error=error, authorized=False, login=login)
+    if not password:
+        error = 'Не введён пароль'
+        return render_template('lab4/login.html', error=error, authorized=False, login=login)
+
+    # Поиск пользователя
     for user in users:
-        if login == user['login'] and password  == user['password']:
-            session ['login'] = login
-            return redirect ('/lab4/login')
-    
-    error = 'Неверный логин и/или пароль'
-    return render_template('lab4/login.html', error=error, authorized=False)
+        if login == user['login'] and password == user['password']:
+            session['login'] = login  
+            return redirect('/lab4/login') 
+
+    error = 'Неверные логин и/или пароль'
+    return render_template('lab4/login.html', error=error, authorized=False, login=login)
 
 
 @lab4.route('/lab4/logout', methods=['POST'])
