@@ -8,6 +8,9 @@
         <form method="post" action="/lab4/logout">
             <button type="submit">Выйти</button>
         </form>
+        <div>
+            <a href="/lab4/users">Перейти к списку пользователей</a>
+        </div>
     {% else %}
         <h1>Вход</h1>
         <h2>Пожалуйста, авторизуйтесь</h2>
@@ -28,5 +31,8 @@
                 <button type="reset">Отмена</button>
             </div>
         </form>
+        <div>
+            <a href="/lab4/register">Регистрация</a>
+        </div>
     {% endif %}
 {% endblock %}

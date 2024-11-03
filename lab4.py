@@ -262,3 +262,59 @@ def order():
         return render_template('lab4/order.html', message=message, discount=discount_message)
 
     return render_template('lab4/order.html')
+
+@lab4.route('/lab4/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        login = request.form.get('login')
+        password = request.form.get('password')
+        name = request.form.get('name')
+
+        if not login or not password or not name:
+            error = 'Все поля обязательны для заполнения.'
+            return render_template('lab4/register.html', error=error)
+        
+        if any(user['login'] == login for user in users):
+            error = 'Логин уже занят.'
+            return render_template('lab4/register.html', error=error)
+        
+        users.append({'login': login, 'password': password, 'name': name, 'gender': 'unknown'})
+        return redirect('/lab4/login')
+    
+    return render_template('lab4/register.html')
+
+
+@lab4.route('/lab4/users')
+def users_list():
+    if 'login' not in session:
+        return redirect('/lab4/login')
+    
+    current_user = next(user for user in users if user['login'] == session['login'])
+    return render_template('lab4/users.html', users=users, current_user=current_user)
+
+
+@lab4.route('/lab4/delete', methods=['POST'])
+def delete_user():
+    login = request.form.get('login')
+    users[:] = [user for user in users if user['login'] != login]
+    session.pop('login', None)
+    return redirect('/lab4/login')
+
+@lab4.route('/lab4/edit', methods=['GET', 'POST'])
+def edit():
+    if 'login' not in session:
+        return redirect('/lab4/login')
+
+    login = session['login']
+    user = next((user for user in users if user['login'] == login), None)
+    
+    if request.method == 'POST':
+        new_name = request.form.get('name')
+        new_password = request.form.get('password')
+
+        if user:
+            user['name'] = new_name
+            user['password'] = new_password
+        return redirect('/lab4/users')
+
+    return render_template('lab4/edit.html', user=user)
