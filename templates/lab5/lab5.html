@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{# номер лабораторной работы: #}
+{% block lab %}Лабораторная работа 5{% endblock %}
+{# основной контент #}
+{% block main %}
+<h2 style="text-align: center;" > База знаний</h2>
+<div class="block-container">
+    <a href="{{ url_for('lab5.login') }}" class="block">Вход</a>
+    <a href="{{ url_for('lab5.register') }}" class="block">Регистрация</a>
+    <a href="{{ url_for('lab5.list') }}" class="block">Список статей</a>
+    <a href="{{ url_for('lab5.create') }}" class="block">Создать статью</a>
+</div>
+<p style="text-align: right; margin:30px;">anonymous</p>
+{% endblock %}
