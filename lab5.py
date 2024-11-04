@@ -139,7 +139,14 @@ def create():
     else:
         cur.execute("SELECT * FROM users WHERE login=?;", (login,))
 
-    user_id = cur.fetchone()['id']
+        user = cur.fetchone()
+
+    # Проверка на наличие пользователя
+    if user is None:
+        db_close(conn, cur)
+        return "Пользователь не найден", 404
+
+    user_id = user['id']
 
     if current_app.config['DB_TYPE'] == 'postgres':
         cur.execute("INSERT INTO articles (user_id, title, article_text) VALUES (%s, %s, %s);", (user_id, title, article_text))
