@@ -208,7 +208,7 @@ def delete(article_id):
         return redirect('/lab5/login')
     
     conn, cur = db_connect()
-    
+
     if current_app.config['DB_TYPE'] == 'postgres':
         cur.execute("DELETE FROM articles WHERE id=%s;", (article_id,))
     else:
@@ -216,3 +216,21 @@ def delete(article_id):
     
     db_close(conn, cur)
     return redirect('/lab5/list')
+
+
+@lab5.route('/lab5/lus')
+def lus():
+
+    login = session.get('login')
+    if not login: 
+        return redirect('lab5/login')
+    
+    conn, cur = db_connect()
+    
+    cur.execute(f"SELECT login FROM users")
+
+    users = cur.fetchall()
+    db_close(conn, cur)
+
+    return render_template('lab5/lus.html', users=users)
+
