@@ -31,7 +31,7 @@
             for (let i = 0; i < office_list.length; i++) {
                 const office = office_list[i];
                 const li = document.createElement('li');
-                li.innerText = office.number + ": " + (office.tenant || 'свободен') + " | Стоимость: " + office.price + " ₽";
+                li.innerText = office.number + ": " + (office.tenant || 'Свободен') + " | Стоимость: " + office.price + " ₽";
 
                 if (office.tenant) {
                     total_rent += office.price;
