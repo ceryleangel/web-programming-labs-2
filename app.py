@@ -4,6 +4,7 @@ from lab2 import lab2
 from lab3 import lab3
 from lab4 import lab4
 from lab5 import lab5
+from lab6 import lab6
 
 import os
 
@@ -17,6 +18,7 @@ app.register_blueprint(lab2)
 app.register_blueprint(lab3)
 app.register_blueprint(lab4)
 app.register_blueprint(lab5)
+app.register_blueprint(lab6)
 
 @app.errorhandler(404)
 def not_found(err):
@@ -77,6 +79,7 @@ def index():
             <li><a href="/lab3">Третья Лабораторная</a></li>
             <li><a href="/lab4">Четвертая Лабораторная</a></li>
             <li><a href="/lab5">Пятая Лабораторная</a></li>
+            <li><a href="/lab6">Шестая Лабораторная</a></li>
         </ol>
     </body>
     <footer>
