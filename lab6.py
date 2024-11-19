@@ -54,7 +54,27 @@ def api():
                 'result': 'success',
                 'id': id
                 }
-    
+
+    if data['method'] == 'cancellation':
+        office_number = data['params']
+        for office in offices:
+            if office['number'] == office_number:
+                if office['tenant'] != login:
+                    return {
+                        'jsonrpc': '2.0',
+                        'error': {
+                            'code': 3,
+                            'message': 'Forbidden'
+                        },
+                        'id': id
+                    }
+                office['tenant'] = ''
+                return {
+                    'jsonrpc': '2.0',
+                    'result': 'success',
+                    'id': id
+                }
+                
     return {
             'jsonrpc': '2.0',
             'error': {
