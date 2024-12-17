@@ -24,11 +24,13 @@ function fillfilmlist() {
 
             let delButton = document.createElement('button');
             delButton.innerText = 'удалить';
-            delButton.onclick = function() { deletefilm(i); };
+            delButton.onclick = function() {
+                deleteFilm(i, films[i].title_ru);
+            };
 
             tdActions.append(editButton);
             tdActions.append(delButton);
-            
+
             tr.append(tdTitle);
             tr.append(tdTitleRus);
             tr.append(tdYear);
@@ -36,4 +38,14 @@ function fillfilmlist() {
             tbody.append(tr);
         }
     });
+}
+
+function deleteFilm(id, title) {
+    if(! confirm(`Вы точно хотите удалить фильм "${title}"?`))
+        return;
+
+    fetch(`/lab7/rest-api/films/${id}`, {method: 'DELETE'})
+        .then(function () {
+            fillFilmList();
+        });
 }
