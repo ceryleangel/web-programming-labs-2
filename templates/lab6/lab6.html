@@ -42,12 +42,12 @@
                 bookingButton.onclick = function() {booking(office.number)};
                 li.appendChild(bookingButton);
 
-            if (office.tenant) {
-                const cancellationButton = document.createElement('button');
-                cancellationButton.innerText = 'Снять бронирование';
-                cancellationButton.onclick = function() { cancelBooking(office.number) };
-                li.appendChild(cancellationButton);
-            }
+                if (office.tenant) {
+                    const cancellationButton = document.createElement('button');
+                    cancellationButton.innerText = 'Снять бронирование';
+                    cancellationButton.onclick = function() { cancelBooking(office.number) };
+                    li.appendChild(cancellationButton);
+                }
 
                 ul.appendChild(li);
             }

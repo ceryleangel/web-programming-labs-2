@@ -1,4 +1,8 @@
-from flask import Blueprint, render_template, redirect, request, session, current_app
+from flask import Blueprint, render_template, request, session, current_app
+import psycopg2
+from psycopg2.extras import RealDictCursor
+from os import path
+import sqlite3
 
 lab6=Blueprint('lab6', __name__) 
 
