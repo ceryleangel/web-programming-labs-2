@@ -11,6 +11,7 @@ from lab8 import lab8
 import os
 from os import path
 from flask_sqlalchemy import SQLAlchemy
+from db import db
 
 app=Flask(__name__) 
 
@@ -19,9 +20,9 @@ app.config['DB_TYPE'] = os.getenv('DB_TYPE', 'postgres')
 
 
 if app.config['DB_TYPE'] == 'postgres':
-    db_user = 'alina_terehova_orm'
-    db_password = '1234'
-    db_name = 'alina_terehova_orm'
+    db_user = 'arina_babii_orm'
+    db_password = '987'
+    db_name = 'arina_babii_orm'
     host_ip = '127.0.0.1'
     host_port = 5432
 
@@ -29,7 +30,7 @@ if app.config['DB_TYPE'] == 'postgres':
         f'postgresql://{db_user}:{db_password}@{host_ip}:{host_port}/{db_name}'
 else:
     dir_path = path.dirname(path.realpath(__file__))
-    db_path = path.join(dir_path, "alina_terehova_orm.db")
+    db_path = path.join(dir_path, "arina_babii_orm.db")
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
 
 db.init_app(app)
