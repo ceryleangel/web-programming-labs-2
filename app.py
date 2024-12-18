@@ -12,6 +12,7 @@ import os
 from os import path
 from flask_sqlalchemy import SQLAlchemy
 from db import db
+from db.models import users, articles
 
 app=Flask(__name__) 
 
