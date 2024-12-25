@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{# номер лабораторной работы: #}
+{% block lab %}  РГЗ {% endblock %}
+
+{# основной контент: #}
+{% block main %}
+        <div class="block-container">
+            <a class="block" href="/rgz/login">Вход</a>
+            <a class="block" href="/rgz/register">Регистрация</a>
+            <a class="block" href="/rgz/recipes">Список рецпетов</a>
+            <a class="block" href="/rgz/">Вернуться на главную</a>
+            {% if current_user.login == 'Admin' %}
+                <a class="block" href="/rgz/create_recipe">Добавить рецепт</a>
+            {% endif %}
+        </div>
+    <div>
+        <div>
+            <h1>Список рецептов</h1>
+            {% if login %}
+                <div>{{ login }}</div>
+            {% else %}
+                <div>Anonymous</div>
+            {% endif %}
+        </div>
+
+    </div>
+    <div>
+        <form method="get" action="{{ url_for('rgz.recipe') }}">
+            <input type="text" name="title" placeholder="Название рецепта">
+            <input type="text" name="ingredients" placeholder="Ингредиенты (через запятую)">
+            <label>
+                <input type="radio" name="mode" value="all"> Все ингредиенты
+            </label>           
+            <label>
+                <input type="radio" name="mode" value="any" checked> Любой из ингредиентов
+            </label>
+
+            
+            <button type="submit">Поиск</button>
+        </form>
+    </div>
+
+    {% for recipe in recipes %}
+        <div class="recipe-block" style="text-align: center;">
+                <p><img src="{{ recipe.photo_url }}" alt="{{ recipe.title }}" style="max-width: 100%; height: auto;"></p>
+                <h2>{{ recipe.title }}</h2>
+
+                <p><strong>Ингредиенты:</strong> {{ recipe.ingredients }}</p>
+                <p><strong>Шаги приготовления:</strong> 
+                    {% if recipe.steps|length > 100 %}
+                        {{ recipe.steps[:100] }}... 
+                        <a href="#" class="expand-link" data-steps="{{ recipe.steps }}">Развернуть</a>
+                    {% else %}
+                        {{ recipe.steps }}
+                    {% endif %}
+                </p>
+            
+            <script>
+                document.querySelectorAll('.expand-link').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const fullText = e.target.getAttribute('data-steps');
+                        const stepsParagraph = e.target.parentElement;  // Предыдущий элемент, содержащий шаги
+                        stepsParagraph.innerHTML = `<strong>Шаги приготовления:</strong> ${fullText}`;  // Заменяем текст на полный
+                    });
+                });
+            </script>
+            
+        
+            {% if current_user.login == 'Admin' %}
+                <form action="{{ url_for('rgz.delete_recipe', recipe_id=recipe.id) }}" method="post" style="display:inline;">
+                    <button type="submit">Удалить</button>
+                </form>
+                <a href="{{ url_for('rgz.edit_recipe', recipe_id=recipe.id) }}">Редактировать</a>
+            {% endif %}
+        </div>
+    {% else %}
+        <h2 >Нет рецептов для отображения</h2>
+    {% endfor %}
+
+    <div style="text-align: center;">
+        {% if recipes.has_prev %}
+            <a style="margin: 0 20px;" href="{{ url_for('rgz.recipe', page=recipes.prev_num) }}"><< Назад  </a>
+        {% endif %}
+
+        {% if recipes.has_next %}
+            <a  href="{{ url_for('rgz.recipe', page=recipes.next_num) }}">Далее >></a>
+        {% endif %}
+    </div>
+    
+{% endblock %}

@@ -82,6 +82,15 @@ img {
     height: 320px;
 }
 
+.block2 {
+    display: flex;
+    padding:  15px;
+    margin: 5px;
+    background-color: #003c18;
+    border-radius: 5px;
+    text-align: center;
+}
+
 .block {
     display: inline-block;
     padding:  15px;
@@ -90,6 +99,7 @@ img {
     border-radius: 5px;
     text-align: center;
 }
+
 a.block {
     color: white;
 }
@@ -132,14 +142,4 @@ button:hover {
     width: 500px;
     display: block;
      margin: 0 auto;
-}
-
-
-.recipe-block {
-    background-color: #cff4dd8b; /* Цвет фона блока */
-    border: 1px solid #acffb2; /* Граница (опционально) */
-    border-radius: 5px; /* Скругление углов блока */
-    padding: 15px; /* Отступы внутри блока */
-    margin: 10px 0; /* Отступы между блоками */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для визуализации */
 }

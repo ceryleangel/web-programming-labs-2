@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{# номер лабораторной работы: #}
+{% block lab %} РГЗ {% endblock %}
+
+{# основной контент: #}
+{% block main %}
+    <div class="block-container">
+        <a class="block" href="/rgz/login">Вход</a>
+        <a class="block" href="/rgz/register">Регистрация</a>
+        <a class="block" href="/rgz/recipes">Список рецпетов</a>
+        <a class="block" href="/rgz/">Вернуться на главную</a>
+        {% if current_user.login == 'Admin' %}
+            <a class="block" href="/rgz/create_recipe">Добавить рецепт</a>
+        {% endif %}
+    </div>
+    
+    <div>
+        <div>
+            <h1>Список рецептов</h1>
+            {% if login %}
+                <div>{{ login }}</div>
+            {% else %}
+                <div>Anonymous</div>
+            {% endif %}
+        </div>
+
+    </div>
+    <h2>Редактирование рецепт</h2>
+    <div>
+        <form method="post">
+            <div>
+                <label>
+                    Название блюда:
+                    <input type="text" maxlength="100" name="title" value="{{ recipe.title }}" required>
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Используемые ингридиенты (перечислить через запятую):
+                    <input type="text" name="ingredients" value="{{ recipe.ingredients }}" required>
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Шаги приготовления:
+                    <input type="text" name="steps" maxlength="3000" value="{{ recipe.steps }}" required>
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Картинка (URL):
+                    <input type="text" maxlength="200" name="photo_url" value="{{ recipe.photo_url }}" required>
+                </label>
+            </div>
+
+
+            {% if error %}
+                <div class="error">{{ error }}</div>
+            {% endif %}
+            <div>
+                <button type="submit">Сохранить изменения</button>
+            </div>
+        </form>
+    </div>
+    <div>
+        <a class="block" href="/rgz/recipes">Отмена</a>
+    </div>
+{% endblock %}

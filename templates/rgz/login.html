@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{# номер лабораторной работы: #}
+{% block lab %}  РГЗ {% endblock %}
+
+{# основной контент: #}
+{% block main %}
+    <div class="block-container">
+        <a class="block" href="/rgz/login">Вход</a>
+        <a class="block" href="/rgz/register">Регистрация</a>
+        <a class="block" href="/rgz/recipes">Список рецпетов</a>
+        <a class="block" href="/rgz/">Вернуться на главную</a>
+        {% if current_user.login == 'Admin' %}
+            <a class="block" href="/rgz/create_recipe">Добавить рецепт</a>
+        {% endif %}
+    </div>
+    
+    <div>
+        <div>
+            {% if login %}
+                <div>{{ login }}</div>
+            {% else %}
+                <div>Anonymous</div>
+            {% endif %}
+        </div>
+
+    <h1>Вход в систему</h1>
+    <div>
+        <form action="/rgz/login" method="post">
+            <div>
+                <label>
+                    Логин: <input type="text" name="login">
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Пароль: <input type="password" name="password">
+                </label>
+            </div>
+
+            {% if error %}
+                <div class="error">{{ error }}</div>
+            {% endif %}
+
+            <div><button type="submit">Вход</button></div>
+        </form>
+    </div>
+{% endblock %}

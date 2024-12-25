@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{# номер лабораторной работы: #}
+{% block lab %} РГЗ {% endblock %}
+
+{# основной контент: #}
+{% block main %}
+    <div>
+        <div>
+            <h1>Список рецептов</h1>
+            {% if login %}
+                <div>{{ login }}</div>
+            {% else %}
+                <div>Anonymous</div>
+            {% endif %}
+        </div>
+
+        <div >
+            <h2 style="text-align: center;">Добро пожаловать!</h2>
+            <h2 style="text-align: center;">Здесь вы сможете найти рецепт на любой вкус.</h2>
+        </div>
+
+        <h4 style="text-align: center;" >
+            <div class="block-container">
+                <a class="block" href="/rgz/login">Вход</a>
+                <a class="block" href="/rgz/register">Регистрация</a>
+                <a class="block" href="/rgz/recipes">Список рецпетов</a>
+                {% if current_user.login == 'Admin' %}
+                    <div><a class="block" href="/rgz/create_recipe">Добавить рецепт</a></div>
+                {% endif %}
+            </div>
+        </h2>
+    </div>
+
+    <div class="center"><div><a href="/rgz/logout">Выйти</a></div>
+
+    <div style="text-align: right;">
+        <form action="{{ url_for('rgz.delete_account') }}" method="post" style="display:inline;">
+            <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить свой аккаунт? Это действие необратимо.');">Удалить аккаунт</button>
+        </form>
+    </div>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+{% endblock %}

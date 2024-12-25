@@ -1,13 +1,13 @@
 from flask import Flask, url_for, redirect, render_template
 from lab1 import lab1
 from lab2 import lab2
-from lab3 import lab3
 from lab4 import lab4
 from lab5 import lab5
 from lab6 import lab6
 from lab7 import lab7
 from lab8 import lab8
 from lab9 import lab9
+from rgz import rgz
 
 import os
 from os import path
@@ -47,13 +47,13 @@ db.init_app(app)
     
 app.register_blueprint(lab1)
 app.register_blueprint(lab2)
-app.register_blueprint(lab3)
 app.register_blueprint(lab4)
 app.register_blueprint(lab5)
 app.register_blueprint(lab6)
 app.register_blueprint(lab7)
 app.register_blueprint(lab8)
 app.register_blueprint(lab9)
+app.register_blueprint(rgz)
 
 @app.errorhandler(404)
 def not_found(err):
@@ -118,6 +118,7 @@ def index():
             <li><a href="/lab7">Седьмая Лабораторная</a></li>
             <li><a href="/lab8">Восьмая Лабораторная</a></li>
             <li><a href="/lab9">Девятая Лабораторная</a></li>
+            <li><a href="/rgz">РГЗ</a></li>
         </ol>
     </body>
     <footer>
