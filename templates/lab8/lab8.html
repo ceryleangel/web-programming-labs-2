@@ -1,8 +1,10 @@
 {% extends "base.html" %}
+
 {% block lab %} Лабораторная работа 8 {% endblock %}
 {% block style %}
     <link rel="stylesheet" href="{{url_for('static',filename='/lab5/style.css')}}">
 {% endblock %}
+
 {% block main %}
     <h1>База знаний</h1>
     <div class="button">
@@ -10,11 +12,19 @@
         <button disabled name="operation" value="regist"><a href="/lab8/register">Регистрация</a></button>
         <button disabled name="operation" value="articles"><a href="/lab8/articles">Список статей</a></button>
         <button disabled name="operation" value="create"><a href="/lab8/create">Создать статью</a></button> 
-
-    <div class="name">
-      <p style="text-align: right; margin:30px; ">
-        {{ login if login else 'Anonymous' }}
-    </p>
+        <div class="name">
+            <p style="text-align: right; margin:30px; ">
+                {%if current_user.is_authenticated %}
+                    {{current_user.login}}
+                    <div class="logout-container">
+                        <a class="logout-button" href="/lab8/logout">Выход</a>
+                    </div>
+                {%else%}
+                    Anonymous
+                {%endif%}
+            </p>
+        </div>
+        
     </div>
   
 {% endblock %}

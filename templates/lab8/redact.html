@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block style %}
+    <link rel="stylesheet" href="{{url_for('static',filename='/lab5/create.css')}}">
+{% endblock %}
+
+{% block main %}
+<h1>Редактирование статьи</h1>
+
+<form action="/lab8/redact/{{ articles.id }}" method="post">  
+    <div class="form-group">
+        <label>Название статьи:</label>
+        <input type="text" name="title" value="{{ articles.title }}" required>
+    </div>
+    <div class="form-group">
+        <label>Текст статьи:</label>
+        <textarea name="article_text" required>{{ articles.article_text }}</textarea>
+    </div>
+    <div class="form-group">
+        <button type="submit">Сохранить</button>
+    </div>
+</form>
+
+<form action="/lab8/delete" method="post" style="display:inline;">
+        <input type="hidden" name="id" value="{{ articles.id}}">   
+        <button type="submit">Удалить</button>
+    </form>
+{% endblock %}
