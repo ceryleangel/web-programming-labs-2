@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block style %}
+    <link rel="stylesheet" href="{{url_for('static',filename='/lab9/main.css')}}">
+{% endblock %}
+{% block main %}
+   <h1>{{ greeting }}</h1>
+   <p>{{ gift }}</p>
+   <img  class="responsive-image" src="{{ image }}" >
+{% endblock %}

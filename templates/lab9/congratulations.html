@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block lab %}Поздравление{% endblock %}
+
+{% block main %}
+
+<div class="centered-content">
+    <h1>{{ message }}</h1>
+    <img src="{{ url_for('static', filename=image) }}" class="centered-image">
+</div>
+{% endblock %}
